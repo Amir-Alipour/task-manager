@@ -11,7 +11,7 @@ export const {
     selectAll: selectAllTasks,
     selectById: selectTaskById,
     selectIds: selectTasksIds
-} = tasksAdapter.getSelectors(state => state.tasks)
+} = tasksAdapter.getSelectors(state => state.tasks);
 
 const initialState = tasksAdapter.getInitialState({
     status: 'idle',
