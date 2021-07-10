@@ -1,9 +1,14 @@
+import {Route, Switch} from 'react-router-dom';
+import Workspace from '../pages/worksapce/Workspace';
+
 function AppContainer() {
     return (
-        <div>
-            
-        </div>
+        <Switch>
+            <Route path="/">
+                <Workspace />
+            </Route>
+        </Switch>
     )
 }
 
-export default AppContainer
+export default AppContainer;
