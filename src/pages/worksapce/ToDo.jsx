@@ -1,7 +1,7 @@
 function ToDo() {
     return (
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 h-full flex flex-column box-border p-2">
-            <div classNames="flex">
+            <div>
                 <div className="text-2xl font-semibold flex items-center justify-between">
                     <p>To Do</p>
                     <svg
