@@ -1,6 +1,6 @@
 function WorkspaceHeader() {
     return (
-        <div>
+        <div className="col-12 h-full bg-gray-200">
             
         </div>
     )
