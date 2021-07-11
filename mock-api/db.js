@@ -14,6 +14,7 @@ module.exports = function () {
             "PENDING APPROVAL",
             "APPROVED",
         ],
+        user: {},
     };
 
     const status = ["To Do", "In Progress", "On Hole", "Done"];
@@ -25,6 +26,12 @@ module.exports = function () {
             profile: faker.image.avatar(),
         });
     };
+
+    data.user = {
+        id: faker.random.arrayElement(data.users).id,
+        name: faker.random.arrayElement(data.users).name,
+        profile: faker.random.arrayElement(data.users).profile,
+    }
 
     for (let i = 0; i < 5; i++) {
         data.history.push({
@@ -45,7 +52,7 @@ module.exports = function () {
         });
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
         data.tasks.push({
             id: faker.datatype.uuid(),
             badge: faker.random.arrayElement(data.badges),
