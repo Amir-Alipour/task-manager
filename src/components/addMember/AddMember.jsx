@@ -1,4 +1,14 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
 function AddMember({ func }) {
+    const [username, setUsername] = useState();
+    const [profileUrl, setProfileUrl] = useState();
+    const canAdd = username && profileUrl;
+
+    const dispatch = useDispatch();
+
+
     return (
         <div className="z-50 h-screen absolute top-0 bg-black bg-opacity-50 -left-2">
             <div className="container py-10 flex items-center justify-center">
@@ -31,7 +41,7 @@ function AddMember({ func }) {
                     </div>
                     <div className="row mt-5 float-left">
                         <div className="col-6">
-                            <button className="p-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-400">
+                            <button className="p-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-400" disabled={!canAdd} onClick={handleAddNewMember}>
                                 Add
                             </button>
                         </div>

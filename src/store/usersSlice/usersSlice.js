@@ -1,18 +1,18 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { fetchUsers } from "./usersActions";
+import { fetchUsers, addNewUser } from "./usersActions";
 
 const usersAdapter = createEntityAdapter();
 
 export const {
     selectById: selectUserById,
     selectIds: selectUsersIds,
-    selectAll: selectAllUsers
-} = usersAdapter.getSelectors(state => state.users);
+    selectAll: selectAllUsers,
+} = usersAdapter.getSelectors((state) => state.users);
 
 const initialState = usersAdapter.getInitialState({
-    status: 'idle',
-    error: null
-})
+    status: "idle",
+    error: null,
+});
 
 const usersSlice = createSlice({
     name: "tasks",
@@ -20,13 +20,14 @@ const usersSlice = createSlice({
     reducers: {},
     extraReducers: {
         [fetchUsers.pending]: (state) => {
-            state.status = 'loading'
+            state.status = "loading";
         },
         [fetchUsers.fulfilled]: (state, action) => {
             usersAdapter.upsertMany(state, action.payload);
-            state.status = 'success'
-        }
-    }
+            state.status = "success";
+        },
+        [addNewUser.fulfilled]: usersAdapter.addOne,
+    },
 });
 
 export default usersSlice.reducer;
