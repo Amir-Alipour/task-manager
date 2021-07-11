@@ -61,20 +61,6 @@ module.exports = function () {
             time: faker.date.past().getTime(),
             title: faker.lorem.sentence(),
             text: faker.lorem.paragraphs(),
-            tasks: {
-                0: {
-                    text: faker.lorem.sentence(),
-                    done: faker.datatype.boolean(),
-                },
-                1: {
-                    text: faker.lorem.sentence(),
-                    done: faker.datatype.boolean(),
-                },
-                2: {
-                    text: faker.lorem.sentence(),
-                    done: faker.datatype.boolean(),
-                },
-            },
             note: faker.lorem.paragraph(),
         });
     }

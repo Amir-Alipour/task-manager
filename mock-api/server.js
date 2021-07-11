@@ -17,6 +17,17 @@ server.post('/users', (req, res, next) => {
     next();
 });
 
+server.post('/tasks', (req, res, next) => {
+    req.body = {
+        ...req.body,
+        id: faker.datatype.uuid(),
+        time: Date.now(),
+        status: "To Do"
+    };
+
+    next();
+})
+
 server.use(router);
 server.listen(5000, () => {
     console.log('json server is running');

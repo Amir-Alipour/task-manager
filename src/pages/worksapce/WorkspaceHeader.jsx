@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddMember from "../../components/addMember/AddMember";
+import AddTask from "../../components/addTask/AddTask";
 import { fetchUsers } from "../../store/usersSlice/usersActions";
 import TeamProfile from "./TeamProfile";
 
 function WorkspaceHeader() {
     const dispatch = useDispatch();
     const status = useSelector((state) => state.users.status);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalMemberOpen, setIsModalMemberOpen] = useState(false);
+    const [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
 
     useEffect(() => {
         if (status === "idle") {
@@ -17,8 +19,15 @@ function WorkspaceHeader() {
     }, [dispatch, status]);
 
     const handleOpenAddMemberModal = () => {
-        setIsModalOpen((prev) => !prev);
-        isModalOpen
+        setIsModalMemberOpen((prev) => !prev);
+        isModalMemberOpen
+            ? (document.querySelector("body").style.overflowY = "scroll")
+            : (document.querySelector("body").style.overflowY = "hidden");
+    };
+
+    const handleOpenAddTaskModal = () => {
+        setIsModalTaskOpen((prev) => !prev);
+        isModalTaskOpen
             ? (document.querySelector("body").style.overflowY = "scroll")
             : (document.querySelector("body").style.overflowY = "hidden");
     };
@@ -27,9 +36,12 @@ function WorkspaceHeader() {
         <>
             {status === "loading" ? null : (
                 <>
-                    {isModalOpen ? (
+                    {isModalMemberOpen && (
                         <AddMember func={handleOpenAddMemberModal} />
-                    ) : null}
+                    )}
+                    {isModalTaskOpen && (
+                        <AddTask func={handleOpenAddTaskModal} />
+                    )}
                     <div className="col-12 h-full flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="hidden md:flex">
@@ -49,7 +61,7 @@ function WorkspaceHeader() {
                         </div>
 
                         <div>
-                            <button className="bg-blue-500 p-2 text-white rounded shadow hover:bg-blue-400">
+                            <button className="bg-blue-500 p-2 text-white rounded shadow hover:bg-blue-400" onClick={handleOpenAddTaskModal}>
                                 Add Task
                             </button>
                             <button className="border p-2 rounded ml-3 md:mx-3">

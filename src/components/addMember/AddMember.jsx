@@ -30,7 +30,7 @@ function AddMember({ func }) {
             <div className="container py-10 flex items-center justify-center">
                 <div
                     className="bg-gray-100 rounded shadow box-border p-4 mt-5"
-                    style={{ height: "50vh", width: "60%" }}
+                    style={{ height: "60vh", width: "70%" }}
                 >
                     <div className="row mt-5">
                         <h3>Add Member 👨‍💻</h3>
@@ -70,7 +70,7 @@ function AddMember({ func }) {
                         </div>
                         <div className="col-6">
                             <button
-                                className="p-2 px-4 -ml-3 border-1 border-red-500 text-red-500 rounded"
+                                className="p-2 px-3 -ml-1 border-1 border-red-500 text-red-500 rounded"
                                 onClick={() => func()}
                             >
                                 cancle

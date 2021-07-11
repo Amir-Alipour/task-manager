@@ -41,7 +41,9 @@ function Task({ data }) {
                 </div>
             </div>
             <div className="flex mt-2">
-                <p className="text-lg font-bold text-gray-800 cursor-pointer">{data.title}</p>
+                <p className="text-lg font-bold text-gray-800 cursor-pointer">
+                    {data.title}
+                </p>
             </div>
             <div className="flex justify-between text-gray-300">
                 <div className="flex">

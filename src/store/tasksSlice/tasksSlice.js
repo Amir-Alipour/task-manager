@@ -1,10 +1,11 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 
 // actions
-import { fetchTasks } from "./tasksActions";
+import { fetchTasks, addNewTask } from "./tasksActions";
 
 const tasksAdapter = createEntityAdapter({
-    selectId: (item) => item.id
+    selectId: (item) => item.id,
+    sortComparer: (a, b) => b.time - a.time
 });
 
 export const {
@@ -29,7 +30,8 @@ const tasksSlice = createSlice({
         [fetchTasks.fulfilled]: (state, action) => {
             tasksAdapter.upsertMany(state, action.payload);
             state.status = 'success'
-        }
+        },
+        [addNewTask.fulfilled]: tasksAdapter.addOne,
     }
 });
 
