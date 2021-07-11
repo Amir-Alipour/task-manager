@@ -6,7 +6,6 @@ import WorkspaceHeader from "./WorkspaceHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchTasks } from "../../store/tasksSlice/tasksActions";
-import { selectTasksIds } from "../../store/tasksSlice/tasksSlice";
 import Loader from '../../components/Loader';
 
 function Workspace() {

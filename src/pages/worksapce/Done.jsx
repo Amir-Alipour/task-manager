@@ -1,4 +1,10 @@
+import { useSelector } from "react-redux";
+import Task from "../../components/Task";
+import { selectTasksByStatus } from "../../store/tasksSlice/tasksSelectors";
+
 function Done() {
+    const tasks = useSelector(state => selectTasksByStatus(state, "Done"));
+
     return (
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 h-full flex flex-column box-border p-2">
             <div>
@@ -20,7 +26,13 @@ function Done() {
                     </svg>
                 </div>
             </div>
-            <div className="w-full bg-gray-100 h-full rounded-lg"></div>
+            <div className="w-full h-full border rounded-lg px-3 py-3 overflow-y-scroll overflow-x-hidden custom-scrollbar">
+                {
+                    tasks && tasks.map(task => (
+                        <Task key={task.id} data={task} />
+                    ))
+                }
+            </div>
         </div>
     );
 }
