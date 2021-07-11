@@ -5,7 +5,7 @@ module.exports = function () {
         tasks: [],
         bookmarks: [],
         history: [],
-        members: [],
+        users: [],
         badges: [
             "UP TO DATE",
             "NEEDS REVIEW",
@@ -20,7 +20,7 @@ module.exports = function () {
     const status = ["To Do", "In Progress", "On Hole", "Done"];
 
     for (let i = 0; i < 6; i++) {
-        data.members.push({
+        data.users.push({
             id: faker.datatype.uuid(),
             name: faker.name.firstName(),
             profile: faker.image.avatar(),

@@ -8,7 +8,7 @@ import TeamProfile from "./TeamProfile";
 function WorkspaceHeader() {
     const dispatch = useDispatch();
     const status = useSelector((state) => state.users.status);
-    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         if (status === "idle") {
@@ -27,7 +27,9 @@ function WorkspaceHeader() {
         <>
             {status === "loading" ? null : (
                 <>
-                    {isModalOpen ? <AddMember func={handleOpenAddMemberModal} /> : null}
+                    {isModalOpen ? (
+                        <AddMember func={handleOpenAddMemberModal} />
+                    ) : null}
                     <div className="col-12 h-full flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="hidden md:flex">

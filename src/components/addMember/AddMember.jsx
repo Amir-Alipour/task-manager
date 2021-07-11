@@ -1,13 +1,29 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { addNewUser } from "../../store/usersSlice/usersActions";
 
 function AddMember({ func }) {
-    const [username, setUsername] = useState();
-    const [profileUrl, setProfileUrl] = useState();
-    const canAdd = username && profileUrl;
+    const [username, setUsername] = useState('');
+    const [profileUrl, setProfileUrl] = useState('');
+    const canAdd = () => {
+        return [username, profileUrl].every(Boolean);
+    };
 
     const dispatch = useDispatch();
 
+    const handleAddNewMember = () => {
+        if (canAdd()) {
+            dispatch(
+                addNewUser({
+                    name: username,
+                    profile: profileUrl,
+                })
+            );
+            func();
+        } else {
+            return;
+        }
+    };
 
     return (
         <div className="z-50 h-screen absolute top-0 bg-black bg-opacity-50 -left-2">
@@ -23,6 +39,8 @@ function AddMember({ func }) {
                         <div className="col-12 mt-2">
                             <label htmlFor="username">Username</label>
                             <input
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 placeholder="David"
                                 id="username"
                                 type="text"
@@ -32,6 +50,8 @@ function AddMember({ func }) {
                         <div className="col-12 mt-4">
                             <label htmlFor="profile">Profile</label>
                             <input
+                                value={profileUrl}
+                                onChange={(e) => setProfileUrl(e.target.value)}
                                 placeholder="URL"
                                 id="profile"
                                 type="text"
@@ -41,7 +61,10 @@ function AddMember({ func }) {
                     </div>
                     <div className="row mt-5 float-left">
                         <div className="col-6">
-                            <button className="p-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-400" disabled={!canAdd} onClick={handleAddNewMember}>
+                            <button
+                                className="p-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-400"
+                                onClick={handleAddNewMember}
+                            >
                                 Add
                             </button>
                         </div>

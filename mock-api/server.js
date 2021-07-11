@@ -3,19 +3,19 @@ const db = require('./db');
 const server = jsonServer.create();
 const router = jsonServer.router(db());;
 const middlewares = jsonServer.defaults();
-import faker from 'faker';
+const faker = require('faker');
 
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
-server.post('/members', (req, res, next) => {
+server.post('/users', (req, res, next) => {
     req.body = {
         ...req.body,
         id: faker.datatype.uuid()
     }
 
     next();
-})
+});
 
 server.use(router);
 server.listen(5000, () => {
