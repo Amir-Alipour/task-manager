@@ -9,7 +9,7 @@ function InProgress() {
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 h-full flex flex-column box-border p-2">
             <div>
                 <div className="text-2xl font-semibold flex items-center justify-between">
-                    <p>In Progress</p>
+                    <p>In Progress ⏳</p>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6 mb-2"
