@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/Loader";
 import { fetchUsers } from "../../store/usersSlice/usersActions";
 import TeamProfile from "./TeamProfile";
 
@@ -17,7 +16,7 @@ function WorkspaceHeader() {
     return (
         <>
             {status === "loading" ? (
-                <Loader />
+                null
             ) : (
                 <div className="col-12 h-full flex items-center justify-between">
                     <div className="flex items-center">

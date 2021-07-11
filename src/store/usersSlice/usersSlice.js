@@ -7,7 +7,7 @@ export const {
     selectById: selectUserById,
     selectIds: selectUsersIds,
     selectAll: selectAllUsers
-} = usersAdapter.getSelectors(state => state.users)
+} = usersAdapter.getSelectors(state => state.users);
 
 const initialState = usersAdapter.getInitialState({
     status: 'idle',
