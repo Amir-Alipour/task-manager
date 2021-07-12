@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { fetchBookmarks } from "./bookmarkActions";
+import { fetchBookmarks, addNewBookmark } from "./bookmarkActions";
 
 const bookmarksAdapter = createEntityAdapter({
     sortComparer: (a, b) => b.time - a.time,
@@ -26,6 +26,7 @@ const bookmarkSlice = createSlice({
             bookmarksAdapter.upsertMany(state, action.payload);
             state.status = "success";
         },
+        [addNewBookmark.fulfilled]: bookmarksAdapter.addOne,
     },
 });
 

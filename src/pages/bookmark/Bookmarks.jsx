@@ -6,6 +6,7 @@ import { fetchBookmarks } from "../../store/bookmarkSlice/bookmarkActions";
 import { selectAllBookmarks } from "../../store/bookmarkSlice/bookmarkSlice";
 import AddBookmark from "./AddBookmark";
 import Bookmark from "./Bookmark";
+import FlipMove from "react-flip-move";
 
 function Bookmarks() {
     const dispatch = useDispatch();
@@ -30,11 +31,13 @@ function Bookmarks() {
             <AddBookmark />
 
             <div className="row mt-4">
+                <FlipMove duration={400} easing="ease-in-out">
                 {bookmarks.length > 0
                     ? bookmarks.map((bookmark) => (
                           <Bookmark key={bookmark.id} bookmark={bookmark} />
                       ))
                     : null}
+                </FlipMove>
             </div>
         </div>
     );
