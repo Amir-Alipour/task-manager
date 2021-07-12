@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { fetchHistorys } from "./historyActions";
+import { fetchHistorys, addHistory } from "./historyActions";
 
 const historyAdapter = createEntityAdapter({
     sortComparer: (a, b) => b.time - a.time,
@@ -28,6 +28,7 @@ const historySlice = createSlice({
             historyAdapter.upsertMany(state, action.payload);
             state.status = "success";
         },
+        [addHistory.fulfilled]: historyAdapter.addOne,
     },
 });
 

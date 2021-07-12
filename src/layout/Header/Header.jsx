@@ -20,11 +20,13 @@ function Header() {
         <div className="w-full h-14 bg-blue-500 px-3 flex items-center justify-between">
             <div className="flex items-center">
                 <div className="flex">
-                    <img
-                        src="https://to-do-cdn.microsoft.com/static-assets/c87265a87f887380a04cf21925a56539b29364b51ae53e089c3ee2b2180148c6/icons/logo.png"
-                        alt="logo"
-                        className="w-12 h-10 md:mr-2 ml-5"
-                    />
+                    <Link to="/">
+                        <img
+                            src="https://to-do-cdn.microsoft.com/static-assets/c87265a87f887380a04cf21925a56539b29364b51ae53e089c3ee2b2180148c6/icons/logo.png"
+                            alt="logo"
+                            className="w-12 h-10 md:mr-2 ml-5"
+                        />
+                    </Link>
                     <h3 className="italic mt-1 text-white hidden md:block">
                         TASKO
                     </h3>
@@ -57,9 +59,7 @@ function Header() {
                         className="w-10 h-10 rounded-full mr-2"
                     />
                 </div>
-            ) : (
-                null
-            )}
+            ) : null}
         </div>
     );
 }

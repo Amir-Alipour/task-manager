@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewUser } from "../../store/usersSlice/usersActions";
+import { selectProfile } from "../../store/profileSlice/profileSlice";
+import { addHistory } from "../../store/historySlice/historyActions";
 
 function AddMember({ func }) {
-    const [username, setUsername] = useState('');
-    const [profileUrl, setProfileUrl] = useState('');
+    const [username, setUsername] = useState("");
+    const [profileUrl, setProfileUrl] = useState("");
     const canAdd = () => {
         return [username, profileUrl].every(Boolean);
     };
 
     const dispatch = useDispatch();
+    const user = useSelector(selectProfile);
 
     const handleAddNewMember = () => {
         if (canAdd()) {
@@ -19,6 +22,14 @@ function AddMember({ func }) {
                     profile: profileUrl,
                 })
             );
+
+            dispatch(
+                addHistory({
+                    Text: "Added a Member for Team !",
+                    user: user[0].id,
+                })
+            );
+
             func();
         } else {
             return;

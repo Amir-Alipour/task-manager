@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewBookmark } from "../../store/bookmarkSlice/bookmarkActions";
+import { addHistory } from "../../store/historySlice/historyActions";
 import { selectProfile } from "../../store/profileSlice/profileSlice";
 
 function AddBookmark() {
@@ -23,6 +24,14 @@ function AddBookmark() {
                     user: user[0].id,
                 })
             );
+
+            dispatch(
+                addHistory({
+                    Text: "Added a Note in the Bookmarks",
+                    user: user[0].id,
+                })
+            );
+
             setTitle("");
             setText("");
         } else {

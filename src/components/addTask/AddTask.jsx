@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Api from "../../utils/AxiosConfig";
 import { selectProfile } from "../../store/profileSlice/profileSlice";
 import { addNewTask } from "../../store/tasksSlice/tasksActions";
+import { addHistory } from "../../store/historySlice/historyActions";
 
 function AddTask({ func }) {
     const dispatch = useDispatch();
@@ -37,6 +38,14 @@ function AddTask({ func }) {
                     badge,
                 })
             );
+
+            dispatch(
+                addHistory({
+                    Text: "Added a Task in To Do column",
+                    user: user[0].id,
+                })
+            );
+
             func();
         } else {
             return;
@@ -102,7 +111,7 @@ function AddTask({ func }) {
                                 id="profile"
                                 className="form-control shadow-none mt-2"
                             >
-                                <option >select badge</option>
+                                <option>select badge</option>
                                 {badgeOptions}
                             </select>
                         </div>

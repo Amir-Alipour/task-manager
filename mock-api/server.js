@@ -36,7 +36,17 @@ server.post('/bookmarks', (req, res, next) => {
     };
 
     next();
-})
+});
+
+server.post('/history', (req, res, next) => {
+    req.body = {
+        ...req.body,
+        id: faker.datatype.uuid(),
+        time: Date.now(),
+    };
+
+    next();
+});
 
 server.use(router);
 server.listen(5000, () => {

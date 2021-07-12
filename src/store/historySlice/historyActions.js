@@ -7,3 +7,7 @@ export const fetchHistorys = createAsyncThunk(
         return await Api.get("/history");
     }
 );
+
+export const addHistory = createAsyncThunk('historys/addNewHistory', async (newHistoryData) => {
+    return await Api.post('/history', newHistoryData);
+})

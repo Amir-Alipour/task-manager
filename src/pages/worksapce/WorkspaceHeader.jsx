@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import AddMember from "../../components/addMember/AddMember";
 import AddTask from "../../components/addTask/AddTask";
 import { fetchUsers } from "../../store/usersSlice/usersActions";
@@ -61,12 +62,17 @@ function WorkspaceHeader() {
                         </div>
 
                         <div>
-                            <button className="bg-blue-500 p-2 text-white rounded shadow hover:bg-blue-400" onClick={handleOpenAddTaskModal}>
+                            <button
+                                className="bg-blue-500 p-2 text-white rounded shadow hover:bg-blue-400"
+                                onClick={handleOpenAddTaskModal}
+                            >
                                 Add Task
                             </button>
-                            <button className="border p-2 rounded ml-3 md:mx-3">
-                                history
-                            </button>
+                            <Link to="/history">
+                                <button className="border p-2 rounded ml-3 md:mx-3 text-gray-500">
+                                    history
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </>
