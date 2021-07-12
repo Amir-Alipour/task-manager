@@ -15,7 +15,7 @@ const initialState = usersAdapter.getInitialState({
 });
 
 const usersSlice = createSlice({
-    name: "tasks",
+    name: "users",
     initialState,
     reducers: {},
     extraReducers: {

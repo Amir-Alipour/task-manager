@@ -45,9 +45,9 @@ module.exports = function () {
     for (let i = 0; i < 3; i++) {
         data.bookmarks.push({
             id: faker.datatype.uuid(),
-            title: faker.lorem.paragraph(),
+            title: faker.lorem.sentence(),
             user: faker.random.arrayElement(data.users).id,
-            text: faker.lorem.sentence(),
+            text: faker.lorem.paragraph(),
             time: faker.date.past().getTime(),
         });
     }
