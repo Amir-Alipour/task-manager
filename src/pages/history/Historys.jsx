@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHistorys } from "../../store/historySlice/historyActions";
 import { slectAllHistoryIds } from "../../store/historySlice/historySlice";
+import { fetchUsers } from "../../store/usersSlice/usersActions";
 import HistoryStamp from "./HistoryStamp";
 
 function Historys() {
@@ -11,6 +12,7 @@ function Historys() {
 
     useEffect(() => {
         if (status === "idle") {
+            dispatch(fetchUsers());
             dispatch(fetchHistorys());
         }
     }, [status, dispatch]);

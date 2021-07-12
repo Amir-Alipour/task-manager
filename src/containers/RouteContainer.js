@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Workspace from "../pages/worksapce/Workspace";
 import Bookmarks from "../pages/bookmark/Bookmarks";
 import Historys from "../pages/history/Historys";
+import Statistics from "../pages/statistics/Statistics";
 
 function AppContainer() {
     return (
@@ -16,6 +17,9 @@ function AppContainer() {
             </Route>
             <Route path="/history">
                 <Historys />
+            </Route>
+            <Route path="/statistics">
+                <Statistics />
             </Route>
         </Switch>
     );

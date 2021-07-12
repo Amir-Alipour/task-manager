@@ -19,7 +19,7 @@ function TimeAgo({ date }) {
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
             </svg>
-            <p className="ml-1">{momentDate.fromNow()}</p>
+            <p title={momentDate.format()} className="ml-1">{momentDate.fromNow()}</p>
         </>
     );
 }

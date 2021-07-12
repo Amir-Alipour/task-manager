@@ -24,7 +24,7 @@ function AddTask({ func }) {
         Api.get("/badges").then((badges) => setBadges(badges));
     }, []);
     const badgeOptions = badges.map((badge) => (
-        <option value={badge}>{badge}</option>
+        <option key={badge} value={badge}>{badge}</option>
     ));
 
     const handleAddTask = () => {
