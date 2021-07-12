@@ -10,7 +10,9 @@ function Bookmark({bookmark}) {
                     <UserProfile userID={bookmark.user} />
                 </div>
             </div>
-            <div className="flex">{bookmark.text.substring(0, 150)} ...</div>
+            <div className="flex">
+                <p style={{width: "95%"}}>{bookmark.text.substring(0, 150)} ...</p>
+            </div>
             <div className="flex mt-3 text-gray-400">
                 <TimeAgo date={bookmark.time} />
             </div>
