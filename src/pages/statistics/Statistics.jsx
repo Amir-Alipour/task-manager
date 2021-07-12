@@ -58,21 +58,21 @@ function Statistics() {
                 <div className="col-12 col-md-6 col-lg-3 h-32 mt-2 flex justify-center">
                     <div className="col-10 border p-3 rounded">
                         <h4 className="mt-2">In Progress ⏳</h4>
-                        <p className="text-gray-500 mt-4">{`have ${inProgress.length} task in To Do column`}</p>
+                        <p className="text-gray-500 mt-3">{`have ${inProgress.length} task in In Progress column`}</p>
                     </div>
                 </div>
 
                 <div className="col-12 col-md-6 col-lg-3 h-32 mt-2 flex justify-center">
                     <div className="col-10 border p-3 rounded">
                         <h4 className="mt-2">On Hole 🔍</h4>
-                        <p className="text-gray-500 mt-4">{`have ${onHole.length} task in To Do column`}</p>
+                        <p className="text-gray-500 mt-4">{`have ${onHole.length} task in On Hole column`}</p>
                     </div>
                 </div>
 
                 <div className="col-12 col-md-6 col-lg-3 h-32 mt-2 flex justify-center">
                     <div className="col-10 border p-3 rounded">
                         <h4 className="mt-2">Done! 💻</h4>
-                        <p className="text-gray-500 mt-4">{`have ${done.length} task in To Do column`}</p>
+                        <p className="text-gray-500 mt-4">{`have ${done.length} task in Done column`}</p>
                     </div>
                 </div>
             </div>
