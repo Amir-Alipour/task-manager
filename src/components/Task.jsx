@@ -41,7 +41,7 @@ function Task({ data }) {
                 </div>
             </div>
             <div className="flex mt-2">
-                <p className="text-lg font-bold text-gray-800 cursor-pointer">
+                <p className="text-lg font-bold text-gray-800 cursor-pointer hover:text-gray-500">
                     {data.title}
                 </p>
             </div>
