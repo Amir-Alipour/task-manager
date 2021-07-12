@@ -47,7 +47,7 @@ function AddTask({ func }) {
         <div className="z-50 h-screen absolute top-0 bg-black bg-opacity-50 -left-2">
             <div className="container py-10 flex items-center justify-center">
                 <div
-                    className="bg-gray-100 rounded shadow box-border p-4"
+                    className="bg-gray-100 rounded shadow-md box-border p-4"
                     style={{ height: "90vh", width: "80%" }}
                 >
                     <div className="row">
@@ -102,6 +102,7 @@ function AddTask({ func }) {
                                 id="profile"
                                 className="form-control shadow-none mt-2"
                             >
+                                <option >select badge</option>
                                 {badgeOptions}
                             </select>
                         </div>

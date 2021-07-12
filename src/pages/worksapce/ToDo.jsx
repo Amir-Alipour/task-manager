@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectTasksByStatus } from "../../store/tasksSlice/tasksSelectors";
-import Task from '../../components/Task';
+import Task from "../../components/Task";
+import FlipMove from "react-flip-move";
 
 function ToDo() {
     const tasks = useSelector((state) => selectTasksByStatus(state, "To Do"));
@@ -27,14 +28,10 @@ function ToDo() {
                 </div>
             </div>
             <div className="w-full h-full border rounded-lg px-3 py-3 overflow-y-scroll overflow-x-hidden custom-scrollbar">
-                {
-                    tasks && (
-                        tasks.map(task => (
-                            <Task key={task.id} data={task} />
-                        ))
-                    )
-                }
-                
+                <FlipMove duration={400}>
+                    {tasks &&
+                        tasks.map((task) => <Task key={task.id} data={task} />)}
+                </FlipMove>
             </div>
         </div>
     );
