@@ -21,9 +21,9 @@ const profileSlice = createSlice({
             state.status = 'loading';
         },
         [fetchProfile.fulfilled]: (state, action) => {
-            profileAdapter.upsertOne(state, action.payload);
-            state.status = 'success';
-        }
+            profileAdapter.addOne(state, action.payload);
+            state.status = 'success'
+        },
     }
 })
 

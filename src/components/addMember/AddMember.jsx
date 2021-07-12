@@ -12,7 +12,7 @@ function AddMember({ func }) {
     };
 
     const dispatch = useDispatch();
-    const user = useSelector(selectProfile);
+    const user = useSelector(selectProfile)[0];
 
     const handleAddNewMember = () => {
         if (canAdd()) {
@@ -26,7 +26,7 @@ function AddMember({ func }) {
             dispatch(
                 addHistory({
                     Text: "Added a Member for Team !",
-                    user: user[0].id,
+                    user: user.id,
                 })
             );
 

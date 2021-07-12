@@ -9,7 +9,8 @@ function AddBookmark() {
 
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
-    const user = useSelector(selectProfile);
+    const user = useSelector(selectProfile)[0];
+    console.log(user.id);
 
     const canAdd = () => {
         return [title, text, user].every(Boolean);
@@ -21,14 +22,14 @@ function AddBookmark() {
                 addNewBookmark({
                     title,
                     text,
-                    user: user[0].id,
+                    user: user.id,
                 })
             );
 
             dispatch(
                 addHistory({
                     Text: "Added a Note in the Bookmarks",
-                    user: user[0].id,
+                    user: user.id,
                 })
             );
 

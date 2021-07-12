@@ -8,7 +8,7 @@ import { addHistory } from "../../store/historySlice/historyActions";
 
 function AddTask({ func }) {
     const dispatch = useDispatch();
-    const user = useSelector(selectProfile);
+    const user = useSelector(selectProfile)[0];
 
     const [badges, setBadges] = useState([]);
     const [title, setTitle] = useState("");
@@ -31,7 +31,7 @@ function AddTask({ func }) {
         if (canAdd()) {
             dispatch(
                 addNewTask({
-                    user: user[0].id,
+                    user: user.id,
                     title,
                     text: description,
                     note,
@@ -42,7 +42,7 @@ function AddTask({ func }) {
             dispatch(
                 addHistory({
                     Text: "Added a Task in To Do column",
-                    user: user[0].id,
+                    user: user.id,
                 })
             );
 

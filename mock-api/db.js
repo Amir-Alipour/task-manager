@@ -25,13 +25,14 @@ module.exports = function () {
             name: faker.name.firstName(),
             profile: faker.image.avatar(),
         });
-    };
-
-    data.user = {
-        id: faker.random.arrayElement(data.users).id,
-        name: faker.random.arrayElement(data.users).name,
-        profile: faker.random.arrayElement(data.users).profile,
     }
+
+    const randomUser = faker.random.arrayElement(data.users);
+    data.user = {
+        id: randomUser.id,
+        name: randomUser.name,
+        profile: randomUser.profile,
+    };
 
     for (let i = 0; i < 5; i++) {
         data.history.push({

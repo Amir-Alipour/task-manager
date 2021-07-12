@@ -8,7 +8,7 @@ import HeaderOptions from "./HeaderOptions";
 function Header() {
     const dispatch = useDispatch();
     const status = useSelector((state) => state.profile.status);
-    const profile = useSelector(selectProfile);
+    const profile = useSelector(selectProfile)[0];
 
     useEffect(() => {
         if (status === "idle") {
@@ -50,12 +50,12 @@ function Header() {
                 </div>
             </div>
 
-            {profile.length > 0 ? (
+            {profile ? (
                 <div className="flex items-center">
-                    <p className="text-white mr-3 mt-3">{profile[0].name}</p>
+                    <p className="text-white mr-3 mt-3">{profile.name}</p>
                     <img
-                        src={profile[0].profile}
-                        alt={`${profile[0].name} profile`}
+                        src={profile.profile}
+                        alt={`${profile.name} profile`}
                         className="w-10 h-10 rounded-full mr-2"
                     />
                 </div>
