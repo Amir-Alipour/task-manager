@@ -121,8 +121,8 @@ function HeaderOptions() {
                                               ))}
                                     </div>
                                     <div className="p-4 bg-gray-50">
-                                        <a
-                                            href={windowSize > 770 ? "/trash" : '/history'}
+                                        <Link
+                                            to={windowSize > 770 ? "/trash" : '/history'}
                                             className="no-underline flow-root px-2 py-2 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                                         >
                                             <span className="flex items-center">
@@ -137,7 +137,7 @@ function HeaderOptions() {
                                                     ? "delete a task from any column"
                                                     : "show your functionality history"}
                                             </span>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </Popover.Panel>
