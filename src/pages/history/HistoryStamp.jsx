@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectHistoryById } from "../../store/historySlice/historySelector";
+import { selectHistoryById } from "../../store/historySlice/historySlice";
 
 function HistoryStamp({ historyID }) {
     const history = useSelector((state) => selectHistoryById(state, historyID));

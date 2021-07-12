@@ -7,7 +7,8 @@ const historyAdapter = createEntityAdapter({
 
 export const {
      selectIds: slectAllHistoryIds,
-     selectAll: selectAllHistory
+     selectAll: selectAllHistory,
+     selectById: selectHistoryById
 } = historyAdapter.getSelectors((state) => state.history);
 
 const initialState = historyAdapter.getInitialState({
