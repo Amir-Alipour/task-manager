@@ -5,6 +5,7 @@ import Workspace from "../pages/worksapce/Workspace";
 import Bookmarks from "../pages/bookmark/Bookmarks";
 import Historys from "../pages/history/Historys";
 import Statistics from "../pages/statistics/Statistics";
+import Trash from "../pages/trash/Trash";
 
 function AppContainer() {
     return (
@@ -20,6 +21,9 @@ function AppContainer() {
             </Route>
             <Route path="/statistics">
                 <Statistics />
+            </Route>
+            <Route path="/trash">
+                <Trash />
             </Route>
         </Switch>
     );
