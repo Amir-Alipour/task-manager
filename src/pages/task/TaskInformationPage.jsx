@@ -7,6 +7,8 @@ import UserProfile from "../../components/UserProfile";
 import TimeAgo from "../../components/TimeAgo";
 import TaskBadge from "../../components/TaskBadge";
 import { useState } from "react";
+import Api from "../../utils/AxiosConfig";
+import { updateTaskAction } from "../../store/tasksSlice/tasksSlice";
 
 const badgeOptions = [
     "UP TO DATE",
@@ -50,6 +52,18 @@ function TaskInformationPage() {
         history.push("/");
     };
 
+    const handleUpdateTask = () => {
+        Api.put(`/tasks/${id}`, {
+            title: task.title,
+            badge: taskBadge,
+            status: taskStatus,
+            user: task.user,
+            time: task.time,
+            text: task.text,
+            note,
+        }).then((res) => dispatch(updateTaskAction(res)));
+    };
+
     return (
         <div
             className="container p-3 border-l border-r"
@@ -90,7 +104,7 @@ function TaskInformationPage() {
                     <div className="p-2">
                         <div className="row flex items-center justify-between">
                             <h4 className="col-12 col-lg-7">{task.title}</h4>
-                            <div className="col-12 col-lg-5 flex items-center justify-between">
+                            <div className="col-12 col-lg-5 mt-3 mt-lg-0 flex items-center justify-between">
                                 <div className="flex">
                                     <TimeAgo date={task.time} />
                                 </div>
@@ -174,6 +188,15 @@ function TaskInformationPage() {
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="mt-5">
+                                <button
+                                    onClick={handleUpdateTask}
+                                    className="mb-3 bg-blue-500 p-2 px-3 rounded text-white"
+                                >
+                                    Update
+                                </button>
                             </div>
                         </div>
                     </div>
