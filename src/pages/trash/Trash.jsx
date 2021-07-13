@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTasks } from "../../store/tasksSlice/tasksActions";
+import { deleteTask, fetchTasks } from "../../store/tasksSlice/tasksActions";
 import { selectAllTasks } from "../../store/tasksSlice/tasksSlice";
 
 function Trash() {
     const [taskID, setTaskID] = useState();
     const [queryTasks, setQueryTasks] = useState([]);
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState("");
 
     const dispatch = useDispatch();
     const tasksStatus = useSelector((state) => state.tasks.status);
@@ -21,9 +21,25 @@ function Trash() {
 
     const handleSearchTask = (e) => {
         setSearch(e.target.value);
-        const filterTasks = tasks.filter(task => task.title.toLowerCase().includes(e.target.value));
+        const filterTasks = tasks.filter((task) =>
+            task.title.toLowerCase().includes(e.target.value)
+        );
         setQueryTasks(filterTasks);
-    }
+    };
+
+    const handleDeleteTaskWithSelectBox = () => {
+        if (taskID) {
+            dispatch(deleteTask(taskID));
+        }
+    };
+
+    const handleDeleteTaskWithID = (ID) => {
+        if (ID) {
+            dispatch(deleteTask(ID));
+            setSearch('');
+            setQueryTasks([]);
+        }
+    };
 
     return (
         <div
@@ -41,11 +57,16 @@ function Trash() {
                 <option>select a task ⬇</option>
                 {tasks.map((task) => (
                     <option value={task.id} key={task.id}>
-                        {`${task.title} with (${task.status}) status`}
+                        {`${task.title} | (${task.status}) status`}
                     </option>
                 ))}
             </select>
-            <button className="p-2 px-3 text-red-500 mt-3 border-1 border-red-400">Delete</button>
+            <button
+                className="p-2 px-3 text-red-500 mt-3 border-1 border-red-400"
+                onClick={handleDeleteTaskWithSelectBox}
+            >
+                Delete
+            </button>
 
             <h6 className="mt-5">or search Task and Click on it :</h6>
             <input
@@ -58,14 +79,22 @@ function Trash() {
             {queryTasks.length > 0 ? (
                 <div className="row mt-4 container">
                     {queryTasks.map((task) => (
-                        <div key={task.id} className="px-3 pt-3 border my-2 hover:bg-gray-100 cursor-pointer">
+                        <div
+                            key={task.id}
+                            className="px-3 pt-3 border my-2 hover:bg-red-100 cursor-pointer"
+                            onClick={() => handleDeleteTaskWithID(task.id)}
+                        >
                             <p>{task.title}</p>
-                            <p className="mt-1">status : {task.status}</p>
+                            <p className="mt-1 text-gray-500">
+                                status : {task.status}
+                            </p>
                         </div>
                     ))}
                 </div>
             ) : (
-                <div className="alert alert-warning mx-3 text-center mt-4">no result here</div>
+                <div className="alert alert-warning mx-3 text-center mt-4">
+                    no result here
+                </div>
             )}
         </div>
     );

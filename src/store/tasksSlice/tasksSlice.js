@@ -1,7 +1,7 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 
 // actions
-import { fetchTasks, addNewTask } from "./tasksActions";
+import { fetchTasks, addNewTask, deleteTask } from "./tasksActions";
 
 const tasksAdapter = createEntityAdapter({
     selectId: (item) => item.id,
@@ -22,7 +22,9 @@ const initialState = tasksAdapter.getInitialState({
 const tasksSlice = createSlice({
     name: "tasks",
     initialState,
-    reducers: {},
+    reducers: {
+        removeTask: tasksAdapter.removeOne
+    },
     extraReducers: {
         [fetchTasks.pending]: (state) => {
             state.status = 'loading'
@@ -32,7 +34,10 @@ const tasksSlice = createSlice({
             state.status = 'success'
         },
         [addNewTask.fulfilled]: tasksAdapter.addOne,
+        [deleteTask.fulfilled]: tasksAdapter.removeOne,
     }
 });
+
+export const {removeTask} = tasksSlice.actions;
 
 export default tasksSlice.reducer;
