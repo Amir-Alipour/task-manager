@@ -9,6 +9,8 @@ import TaskBadge from "../../components/TaskBadge";
 import { useState } from "react";
 import Api from "../../utils/AxiosConfig";
 import { updateTaskAction } from "../../store/tasksSlice/tasksSlice";
+import { addHistory } from "../../store/historySlice/historyActions";
+import { selectProfile } from "../../store/profileSlice/profileSlice";
 
 const badgeOptions = [
     "UP TO DATE",
@@ -26,6 +28,7 @@ function TaskInformationPage() {
     const history = useHistory();
 
     const dispatch = useDispatch();
+    const user = useSelector(selectProfile)[0];
     const status = useSelector((state) => state.tasks.status);
 
     const task = useSelector((state) => selectTaskById(state, id));
@@ -49,6 +52,12 @@ function TaskInformationPage() {
 
     const handleDeleteTask = () => {
         dispatch(deleteTask(id));
+        dispatch(
+            addHistory({
+                Text: `Deleted (${id}) task from ${task.status} column`,
+                user: user.id,
+            })
+        );
         history.push("/");
     };
 
@@ -61,7 +70,19 @@ function TaskInformationPage() {
             time: task.time,
             text: task.text,
             note,
-        }).then((res) => dispatch(updateTaskAction(res)));
+        }).then((res) => {
+            dispatch(updateTaskAction(res));
+            dispatch(
+                addHistory({
+                    Text: `Updated (${id}) task ${
+                        task.status !== taskStatus
+                            ? `and move it from ${task.status} to ${taskStatus}`
+                            : null
+                    } ${task.note !== note ? "and update the note box" : null}`,
+                    user: user.id,
+                })
+            );
+        });
     };
 
     return (

@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, fetchTasks } from "../../store/tasksSlice/tasksActions";
 import { selectAllTasks } from "../../store/tasksSlice/tasksSlice";
+import { addHistory } from "../../store/historySlice/historyActions";
+import {selectProfile} from '../../store/profileSlice/profileSlice';
 
 function Trash() {
     const [taskID, setTaskID] = useState();
@@ -10,6 +12,8 @@ function Trash() {
     const [search, setSearch] = useState("");
 
     const dispatch = useDispatch();
+    const user = useSelector(selectProfile)[0];
+    console.log(user);
     const tasksStatus = useSelector((state) => state.tasks.status);
     const tasks = useSelector(selectAllTasks);
 
@@ -30,12 +34,28 @@ function Trash() {
     const handleDeleteTaskWithSelectBox = () => {
         if (taskID) {
             dispatch(deleteTask(taskID));
+            dispatch(
+                addHistory({
+                    Text: `Deleted the (${taskID}) task from ${
+                        tasks.filter((task) => task.id === taskID)[0].status
+                    } column`,
+                    user: user.id
+                })
+            );
         }
     };
 
     const handleDeleteTaskWithID = (ID) => {
         if (ID) {
             dispatch(deleteTask(ID));
+            dispatch(
+                addHistory({
+                    Text: `Deleted the (${ID}) task from ${
+                        tasks.filter((task) => task.id === ID)[0].status
+                    } column`,
+                    user: user.id,
+                })
+            );
             setSearch("");
             setQueryTasks([]);
         }
