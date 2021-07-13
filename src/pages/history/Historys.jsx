@@ -6,16 +6,19 @@ import { fetchUsers } from "../../store/usersSlice/usersActions";
 import HistoryStamp from "./HistoryStamp";
 
 function Historys() {
-    const status = useSelector((state) => state.history.status);
+    const historyStatus = useSelector((state) => state.history.status);
+    const usersStatus = useSelector((state) => state.users.status);
     const dispatch = useDispatch();
     const historyIds = useSelector(slectAllHistoryIds);
 
     useEffect(() => {
-        if (status === "idle") {
-            dispatch(fetchUsers());
+        if (historyStatus === "idle") {
             dispatch(fetchHistorys());
+            if (usersStatus === "idle") {
+                dispatch(fetchUsers());
+            }
         }
-    }, [status, dispatch]);
+    }, [historyStatus, usersStatus, dispatch]);
 
     return (
         <div
