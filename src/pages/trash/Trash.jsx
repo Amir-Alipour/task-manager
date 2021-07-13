@@ -36,7 +36,7 @@ function Trash() {
     const handleDeleteTaskWithID = (ID) => {
         if (ID) {
             dispatch(deleteTask(ID));
-            setSearch('');
+            setSearch("");
             setQueryTasks([]);
         }
     };

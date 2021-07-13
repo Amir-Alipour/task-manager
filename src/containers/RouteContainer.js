@@ -6,6 +6,7 @@ import Bookmarks from "../pages/bookmark/Bookmarks";
 import Historys from "../pages/history/Historys";
 import Statistics from "../pages/statistics/Statistics";
 import Trash from "../pages/trash/Trash";
+import TaskInformationPage from "../pages/task/TaskInformationPage";
 
 function AppContainer() {
     return (
@@ -24,6 +25,9 @@ function AppContainer() {
             </Route>
             <Route path="/trash">
                 <Trash />
+            </Route>
+            <Route path="/:id">
+                <TaskInformationPage />
             </Route>
         </Switch>
     );

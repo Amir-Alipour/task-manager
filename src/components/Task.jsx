@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import TaskBadge from "./TaskBadge";
 import TimeAgo from "./TimeAgo";
 import UserProfile from "./UserProfile";
@@ -41,9 +42,11 @@ function Task({ data }) {
                 </div>
             </div>
             <div className="flex mt-2">
-                <p className="text-lg font-bold text-gray-800 cursor-pointer hover:text-gray-500">
-                    {data.title}
-                </p>
+                <Link className="no-underline" to={`/${data.id}`}>
+                    <p className="text-lg font-bold text-gray-800 cursor-pointer hover:text-gray-500">
+                        {data.title}
+                    </p>
+                </Link>
             </div>
             <div className="flex justify-between text-gray-300">
                 <div className="flex">
