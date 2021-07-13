@@ -8,6 +8,17 @@ import TimeAgo from "../../components/TimeAgo";
 import TaskBadge from "../../components/TaskBadge";
 import { useState } from "react";
 
+const badgeOptions = [
+    "UP TO DATE",
+    "NEEDS REVIEW",
+    "PROPOSED",
+    "UNDER REVIEW",
+    "PENDING APPROVAL",
+    "APPROVED",
+];
+
+const statusOptions = ["To Do", "In Progress", "On Hole", "Done"];
+
 function TaskInformationPage() {
     const { id } = useParams();
     const history = useHistory();
@@ -16,19 +27,23 @@ function TaskInformationPage() {
     const status = useSelector((state) => state.tasks.status);
 
     const task = useSelector((state) => selectTaskById(state, id));
-    const [note, setNote] = useState(() => {
-        if (task) {
-            return task.note;
-        } else {
-            return "";
-        }
-    });
+    const [note, setNote] = useState();
+    const [taskStatus, setTaskStatus] = useState();
+    const [taskBadge, setTaskBadge] = useState();
 
     useEffect(() => {
         if (status === "idle") {
             dispatch(fetchTasks());
         }
     }, [dispatch, status]);
+
+    useEffect(() => {
+        if (status === "success") {
+            setNote(task.note);
+            setTaskBadge(task.badge);
+            setTaskStatus(task.status);
+        }
+    }, [status, task]);
 
     const handleDeleteTask = () => {
         dispatch(deleteTask(id));
@@ -38,7 +53,7 @@ function TaskInformationPage() {
     return (
         <div
             className="container p-3 border-l border-r"
-            style={{ height: "94.3vh" }}
+            style={{ height: "100vh" }}
         >
             <div className="flex justify-between">
                 <h3>Task Information</h3>
@@ -73,16 +88,20 @@ function TaskInformationPage() {
                     </div>
                 ) : (
                     <div className="p-2">
-                        <div className="flex items-center justify-between">
-                            <h4>{task.title}</h4>
-                            <div className="flex">
-                                <TimeAgo date={task.time} />
-                            </div>
-                            <div>
-                                <p className="text-gray-600">{task.status}</p>
-                            </div>
-                            <div className="w-12 h-12">
-                                <UserProfile userID={task.user} />
+                        <div className="row flex items-center justify-between">
+                            <h4 className="col-12 col-lg-7">{task.title}</h4>
+                            <div className="col-12 col-lg-5 flex items-center justify-between">
+                                <div className="flex">
+                                    <TimeAgo date={task.time} />
+                                </div>
+                                <div>
+                                    <p className="text-gray-600">
+                                        {task.status}
+                                    </p>
+                                </div>
+                                <div className="w-12 h-12">
+                                    <UserProfile userID={task.user} />
+                                </div>
                             </div>
                         </div>
 
@@ -113,9 +132,47 @@ function TaskInformationPage() {
                         <div className="mt-5">
                             <h5>Update</h5>
 
-                            <div className="mt-2">
+                            <div className="mt-3">
                                 <div className="row">
-                                    <div className="col-12 col-md-6"></div>
+                                    <div className="col-11 col-md-5">
+                                        <p>column :</p>
+                                        <select
+                                            className="form-control"
+                                            value={taskStatus}
+                                            onChange={(e) =>
+                                                setTaskStatus(e.target.value)
+                                            }
+                                        >
+                                            {statusOptions.map((status) => (
+                                                <option
+                                                    key={status}
+                                                    value={status}
+                                                >
+                                                    {status}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <div className="col-11 col-md-5">
+                                        <p>badge :</p>
+                                        <select
+                                            className="form-control"
+                                            value={taskBadge}
+                                            onChange={(e) =>
+                                                setTaskBadge(e.target.value)
+                                            }
+                                        >
+                                            {badgeOptions.map((badge) => (
+                                                <option
+                                                    key={badge}
+                                                    value={badge}
+                                                >
+                                                    {badge}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
